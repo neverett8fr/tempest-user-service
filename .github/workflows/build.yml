@@ -1,0 +1,21 @@
+name: build
+
+on:
+  push:
+    branches: [ "main" ]
+    
+jobs:
+  build-and-push-to-gcr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: RafikFarhad/push-to-gcr-github-action@v4.1
+        with:
+          gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }} # can be base64 encoded or plain text
+          registry: gcr.io
+          project_id: the-tempest
+          image_name: tempest-user-service
+          image_tag: latest,v1
+          dockerfile: ./docker/Dockerfile
+          context: ./docker
+  
