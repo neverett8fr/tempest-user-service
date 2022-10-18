@@ -1,18 +1,27 @@
 # syntax=docker/dockerfile:1
 
-FROM golang:1.16-alpine
+## Build
+FROM golang:1.16-buster AS build
 
 WORKDIR /app
 
 COPY go.mod ./
 COPY go.sum ./
-
 RUN go mod download
 
 COPY *.go ./
 
 RUN go build -o /tempest-user-service
 
-EXPOSE 9100
+## Deploy
+FROM gcr.io/distroless/base-debian10
 
-CMD [ "/tempest-user-service" ]
+WORKDIR /
+
+COPY --from=build /tempest-user-service /tempest-user-service
+
+EXPOSE 8080
+
+USER nonroot:nonroot
+
+ENTRYPOINT ["/tempest-user-service"]

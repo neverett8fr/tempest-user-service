@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -22,10 +23,11 @@ func router() *mux.Router {
 
 // Initiate web server
 func main() {
+	fmt.Println("service started")
 	router := router()
 	srv := &http.Server{
 		Handler:      router,
-		Addr:         "127.0.0.1:9100",
+		Addr:         "127.0.0.1:8080",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
