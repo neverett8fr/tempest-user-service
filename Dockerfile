@@ -10,6 +10,7 @@ COPY go.sum ./
 RUN go mod download
 
 COPY *.go ./
+COPY . $SRC_DIR
 
 RUN go build -o /tempest-user-service
 
