@@ -2,23 +2,19 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"log"
-	"net/http"
 	"tempest-user-service/cmd"
+	application "tempest-user-service/pkg/application/service"
 	"tempest-user-service/pkg/config"
 
 	"github.com/gorilla/mux"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "Hello world!\n")
-}
-
 // Route declaration
-func router() *mux.Router {
+func getRoutes() *mux.Router {
 	r := mux.NewRouter()
-	r.HandleFunc("/", handler)
+	application.NewUserInformation(r)
+
 	return r
 }
 
@@ -28,7 +24,7 @@ func main() {
 	conf := config.Initialise()
 
 	fmt.Println("service started")
-	router := router()
+	router := getRoutes()
 
 	err := cmd.StartServer(*conf, router)
 	if err != nil {
