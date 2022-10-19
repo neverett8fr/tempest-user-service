@@ -12,7 +12,8 @@ const (
 )
 
 type Service struct {
-	Port int `yaml:"port"`
+	Host string `yaml:"host"`
+	Port int    `yaml:"port"`
 }
 
 type Config struct {
