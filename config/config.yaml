@@ -1,0 +1,2 @@
+user-service-config:
+  port: 8080

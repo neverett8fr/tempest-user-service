@@ -1,5 +1,8 @@
-module example.com/m/v2
+module tempest-user-service
 
 go 1.18
 
-require github.com/gorilla/mux v1.8.0 // indirect
+require (
+	github.com/gorilla/mux v1.8.0
+	gopkg.in/yaml.v2 v2.4.0
+)
