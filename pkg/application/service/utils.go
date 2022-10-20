@@ -12,6 +12,10 @@ func writeReponse(w http.ResponseWriter, r *http.Request, body interface{}) {
 	if err != nil {
 		log.Printf("error converting reponse to bytes, err %v", err)
 	}
+	w.Header().Add("Content-Type", "application/json")
 
-	w.Write(reponseBody)
+	_, err = w.Write(reponseBody)
+	if err != nil {
+		log.Printf("error writing response, err %v", err)
+	}
 }
