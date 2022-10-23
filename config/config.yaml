@@ -1,3 +1,10 @@
 user-service-config:
   host: "0.0.0.0"
   port: 8080
+user-db-config:
+  driver: "postgres"
+  host: "0.0.0.0"
+  port: 5432
+  name: "DB_USER_SERVICE_NAME"
+  username: "DB_USER_SERVICE_USERNAME"
+  password: "DB_USER_SERVICE_PASSWORD"
