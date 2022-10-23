@@ -9,10 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-const (
-	cmdMigrate = "migrate"
-)
-
 // Route declaration
 func getRoutes() *mux.Router {
 	r := mux.NewRouter()
