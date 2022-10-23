@@ -1,8 +1,8 @@
 package config
 
 import (
+	"fmt"
 	"io/ioutil"
-	"log"
 
 	"gopkg.in/yaml.v2"
 )
@@ -16,24 +16,32 @@ type Service struct {
 	Port int    `yaml:"port"`
 }
 
-type Config struct {
-	Service Service `yaml:"user-service-config"`
+type DB struct {
+	Driver   string `yaml:"driver"`
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	Name     string `yaml:"name"`
 }
 
-func Initialise() *Config {
+type Config struct {
+	Service Service `yaml:"user-service-config"`
+	DB      DB      `yaml:"user-db-config"`
+}
+
+func Initialise() (*Config, error) {
 
 	conf := Config{}
 
 	yamlFile, err := ioutil.ReadFile(route)
 	if err != nil {
-		log.Fatalf("issue finding config yaml, err %v", err)
-		return &Config{}
+		return &Config{}, fmt.Errorf("issue finding config yaml, err %v", err)
 	}
 	err = yaml.Unmarshal(yamlFile, &conf)
 	if err != nil {
-		log.Fatalf("issue unmarshalling config yaml, err %v", err)
-		return &Config{}
+		return &Config{}, fmt.Errorf("issue unmarshalling config yaml, err %v", err)
 	}
 
-	return &conf
+	return &conf, nil
 }
