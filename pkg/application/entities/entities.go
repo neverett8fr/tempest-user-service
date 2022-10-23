@@ -1,4 +1,4 @@
-package entities
+package application
 
 type Response struct {
 	Errors []error     `json:"errors"`

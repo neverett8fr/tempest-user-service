@@ -1,8 +1,8 @@
-package application
+package service
 
 import (
 	"net/http"
-	"tempest-user-service/pkg/application/entities"
+	application "tempest-user-service/pkg/application/entities"
 
 	"github.com/gorilla/mux"
 )
@@ -16,7 +16,7 @@ func testHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	text := params["text"]
 
-	body := entities.NewResponse(text)
+	body := application.NewResponse(text)
 
 	writeReponse(w, r, body)
 }
