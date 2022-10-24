@@ -27,7 +27,4 @@ COPY --from=builder /tempest-user-service ./
 
 EXPOSE 8080
 
-USER nonroot:nonroot
-
-
 ENTRYPOINT ["/tempest-user-service"]
