@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 
 	"gopkg.in/yaml.v2"
 )
@@ -38,6 +39,8 @@ func Initialise() (*Config, error) {
 	if err != nil {
 		return &Config{}, fmt.Errorf("issue finding config yaml, err %v", err)
 	}
+	yamlFile = []byte(os.ExpandEnv(string(yamlFile)))
+
 	err = yaml.Unmarshal(yamlFile, &conf)
 	if err != nil {
 		return &Config{}, fmt.Errorf("issue unmarshalling config yaml, err %v", err)
