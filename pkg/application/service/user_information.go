@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"net/http"
 	application "tempest-user-service/pkg/application/entities"
 
@@ -16,7 +17,7 @@ func testHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	text := params["text"]
 
-	body := application.NewResponse(text)
+	body := application.NewResponse(fmt.Sprintf("test: %v", text))
 
 	writeReponse(w, r, body)
 }
