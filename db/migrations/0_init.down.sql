@@ -1,2 +1,2 @@
 DROP EXTENSION pgcrypto;
-DROP TABLE IF EXISTS user_db.users();
+DROP TABLE IF EXISTS users();
