@@ -3,6 +3,8 @@
 version: '3.7'
 services:
   web:
+    depends_on:
+    - postgres
     build: .
     ports:
     - "8080:8080"
