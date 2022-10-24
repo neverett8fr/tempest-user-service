@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS user_db.users(
+CREATE TABLE IF NOT EXISTS users(
     id SERIAL PRIMARY KEY,
     username VARCHAR UNIQUE NOT NULL,
     password_hash VARCHAR NOT NULL
