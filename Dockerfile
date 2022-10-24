@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ## Build
-FROM golang:1.16-buster AS build
+FROM golang:1.19.2-buster AS builder
 
 WORKDIR /tempest-user-service
 
@@ -21,11 +21,8 @@ FROM gcr.io/distroless/base-debian10
 
 WORKDIR /
 
-COPY --from=build /tempest-user-service ./
+COPY --from=builder /tempest-user-service ./
 
 EXPOSE 8080
-
-USER nonroot:nonroot
-
 
 ENTRYPOINT ["/tempest-user-service"]
