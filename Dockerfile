@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ## Build
-FROM golang:1.16-buster AS builder
+FROM golang:1.19.2-bullseye AS builder
 
 WORKDIR /tempest-user-service
 
