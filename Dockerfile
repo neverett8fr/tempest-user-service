@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ## Build
-FROM golang:1.19.2-bullseye AS builder
+FROM golang:1.19.2-buster AS builder
 
 WORKDIR /tempest-user-service
 
@@ -14,10 +14,10 @@ COPY config/*.yaml ./
 COPY . .
 COPY *.go ./
 
-RUN go build -o /tempest-user-service main.go
+RUN go build -o /tempest-user-service
 
 ## Deploy
-FROM scratch
+FROM gcr.io/distroless/base-debian10
 
 WORKDIR /
 
