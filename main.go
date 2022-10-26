@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"log"
 	"tempest-user-service/cmd"
 	application "tempest-user-service/pkg/application/service"
@@ -10,9 +11,9 @@ import (
 )
 
 // Route declaration
-func getRoutes() *mux.Router {
+func getRoutes(conn *sql.DB) *mux.Router {
 	r := mux.NewRouter()
-	application.NewUserInformation(r)
+	application.NewUserInformation(r, conn)
 
 	return r
 }
@@ -41,7 +42,7 @@ func main() {
 	}
 	log.Println("DB migrations ran")
 
-	router := getRoutes()
+	router := getRoutes(serviceDB)
 	log.Println("API routes retrieved")
 
 	err = cmd.StartServer(&conf.Service, router)
