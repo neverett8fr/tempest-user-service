@@ -39,7 +39,13 @@ func createUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	userInformation := newUserIn{}
-	json.Unmarshal(bodyIn, &userInformation)
+	err = json.Unmarshal(bodyIn, &userInformation)
+	if err != nil {
+		body := NewResponse(nil, err)
+		w.WriteHeader(http.StatusBadRequest)
+		writeReponse(w, body)
+		return
+	}
 
 	user, err := entities.NewUser(userInformation.Username, userInformation.Password)
 	if err != nil {

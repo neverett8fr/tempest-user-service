@@ -12,9 +12,8 @@ import (
 )
 
 const (
-	realTestValueUsername   = "username1"
-	realTestValuePass       = "123Password"
-	realTestValueHashedPass = "213PretendHashed"
+	realTestValueUsername = "username1"
+	realTestValuePass     = "123Password"
 
 	userColumnID           = "id"
 	userColumnUsername     = "username"

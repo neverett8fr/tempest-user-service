@@ -3,7 +3,6 @@ package service
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -12,7 +11,7 @@ import (
 func TestCreateNewUserIsSuccessful(t *testing.T) {
 
 	dbMock, mock := newMockDB(t)
-	mock = newMockAddUser(t, mock)
+	newMockAddUser(t, mock)
 	defer dbMock.Close()
 
 	router := newMockRouter(t, dbMock)
@@ -24,8 +23,11 @@ func TestCreateNewUserIsSuccessful(t *testing.T) {
 
 	buf := bytes.Buffer{}
 	err := json.NewEncoder(&buf).Encode(newRequest)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
 
-	path := fmt.Sprintf("/user")
+	path := "/user"
 	req, err := http.NewRequest(http.MethodPost, path, &buf)
 	if err != nil {
 		t.Errorf(err.Error())
@@ -42,7 +44,7 @@ func TestCreateNewUserIsSuccessful(t *testing.T) {
 func TestCreateNewUserInvalidUsernameIsNotSuccessful(t *testing.T) {
 
 	dbMock, mock := newMockDB(t)
-	mock = newMockAddUser(t, mock)
+	newMockAddUser(t, mock)
 	defer dbMock.Close()
 
 	router := newMockRouter(t, dbMock)
@@ -54,8 +56,11 @@ func TestCreateNewUserInvalidUsernameIsNotSuccessful(t *testing.T) {
 
 	buf := bytes.Buffer{}
 	err := json.NewEncoder(&buf).Encode(newRequest)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
 
-	path := fmt.Sprintf("/user")
+	path := "/user"
 	req, err := http.NewRequest(http.MethodPost, path, &buf)
 	if err != nil {
 		t.Errorf(err.Error())
@@ -72,7 +77,7 @@ func TestCreateNewUserInvalidUsernameIsNotSuccessful(t *testing.T) {
 func TestCreateNewUserInvalidPasswordIsNotSuccessful(t *testing.T) {
 
 	dbMock, mock := newMockDB(t)
-	mock = newMockAddUser(t, mock)
+	newMockAddUser(t, mock)
 	defer dbMock.Close()
 
 	router := newMockRouter(t, dbMock)
@@ -84,8 +89,11 @@ func TestCreateNewUserInvalidPasswordIsNotSuccessful(t *testing.T) {
 
 	buf := bytes.Buffer{}
 	err := json.NewEncoder(&buf).Encode(newRequest)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
 
-	path := fmt.Sprintf("/user")
+	path := "/user"
 	req, err := http.NewRequest(http.MethodPost, path, &buf)
 	if err != nil {
 		t.Errorf(err.Error())
@@ -101,7 +109,7 @@ func TestCreateNewUserInvalidPasswordIsNotSuccessful(t *testing.T) {
 func TestCreateNewUserNoBodyIsNotSuccessful(t *testing.T) {
 
 	dbMock, mock := newMockDB(t)
-	mock = newMockAddUser(t, mock)
+	newMockAddUser(t, mock)
 	defer dbMock.Close()
 
 	router := newMockRouter(t, dbMock)
@@ -110,8 +118,11 @@ func TestCreateNewUserNoBodyIsNotSuccessful(t *testing.T) {
 
 	buf := bytes.Buffer{}
 	err := json.NewEncoder(&buf).Encode(newRequest)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
 
-	path := fmt.Sprintf("/user")
+	path := "/user"
 	req, err := http.NewRequest(http.MethodPost, path, &buf)
 	if err != nil {
 		t.Errorf(err.Error())
