@@ -8,7 +8,7 @@ import (
 func TestCreateNewUserValidUsernameAndPasswordIsSuccessful(t *testing.T) {
 
 	dbMock, mock := newMockDB(t)
-	mock = newMockAddUser(t, mock)
+	newMockAddUser(t, mock)
 	defer dbMock.Close()
 
 	mockDBConn := NewDBConnFromExisting(dbMock)
@@ -27,7 +27,7 @@ func TestCreateNewUserValidUsernameAndPasswordIsSuccessful(t *testing.T) {
 func TestCreateNewUserInvalidUsernameIsNotSuccessful(t *testing.T) {
 
 	dbMock, mock := newMockDB(t)
-	mock = newMockAddUser(t, mock)
+	newMockAddUser(t, mock)
 	defer dbMock.Close()
 
 	mockDBConn := NewDBConnFromExisting(dbMock)
@@ -46,7 +46,7 @@ func TestCreateNewUserInvalidUsernameIsNotSuccessful(t *testing.T) {
 func TestCreateNewUserInvalidPasswordIsNotSuccessful(t *testing.T) {
 
 	dbMock, mock := newMockDB(t)
-	mock = newMockAddUser(t, mock)
+	newMockAddUser(t, mock)
 	defer dbMock.Close()
 
 	mockDBConn := NewDBConnFromExisting(dbMock)
