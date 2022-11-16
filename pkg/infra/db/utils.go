@@ -14,14 +14,6 @@ import "database/sql"
 //  WHERE email = 'johndoe@mail.com'
 //    AND password = crypt('johnspassword', password);
 
-const (
-	userColumnID           = "id"
-	userColumnUsername     = "username"
-	userColumnPasswordHash = "password_hash"
-
-	userTableUsers = "users"
-)
-
 type DBConn struct {
 	Conn *sql.DB
 }
