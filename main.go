@@ -35,12 +35,12 @@ func main() {
 	defer serviceDB.Close()
 	log.Println("connection to DB setup")
 
-	err = cmd.MigrateDB(serviceDB, conf.DB.Driver)
-	if err != nil {
-		log.Fatalf("error running DB migrations, %v", err)
-		return
-	}
-	log.Println("DB migrations ran")
+	// err = cmd.MigrateDB(serviceDB, conf.DB.Driver)
+	// if err != nil {
+	// 	log.Fatalf("error running DB migrations, %v", err)
+	// 	return
+	// }
+	// log.Println("DB migrations ran")
 
 	router := getRoutes(serviceDB)
 	log.Println("API routes retrieved")
